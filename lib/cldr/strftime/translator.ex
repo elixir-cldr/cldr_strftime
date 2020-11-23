@@ -17,8 +17,12 @@ defmodule Cldr.Strftime.Translator do
     ""
   end
 
+  def translate(<< "\\%", rest :: binary>>) do
+    << "%%", translate(rest) :: binary >>
+  end
+
   def translate(<< "\\", char :: utf8, rest :: binary>>) do
-    << "\\", char, translate(rest) :: binary >>
+    << "\\", char :: utf8, translate(rest) :: binary >>
   end
 
   def translate("\"" <> rest) do
@@ -117,13 +121,16 @@ defmodule Cldr.Strftime.Translator do
     "%y" <> translate(rest)
   end
 
-  def translate("yyyy" <> rest) do
-    "%y" <> translate(rest)
-  end
+  # Calendar.strftime doesn't know about
+  # ISO ear
 
-  def translate("yy" <> rest) do
-    "%y" <> translate(rest)
-  end
+  # def translate("yyyy" <> rest) do
+  #   "%y" <> translate(rest)
+  # end
+  #
+  # def translate("yy" <> rest) do
+  #   "%y" <> translate(rest)
+  # end
 
   def translate("y" <> rest) do
     "%y" <> translate(rest)
