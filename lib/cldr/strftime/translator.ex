@@ -58,11 +58,11 @@ defmodule Cldr.Strftime.Translator do
   end
 
   def translate("HH" <> rest) do
-    "%h" <> translate(rest)
+    "%H" <> translate(rest)
   end
 
   def translate("H" <> rest) do
-    "%h" <> translate(rest)
+    "%H" <> translate(rest)
   end
 
   def translate("DDD" <> rest) do
@@ -70,6 +70,10 @@ defmodule Cldr.Strftime.Translator do
   end
 
   def translate("MM" <> rest) do
+    "%m" <> translate(rest)
+  end
+
+  def translate("M" <> rest) do
     "%m" <> translate(rest)
   end
 
@@ -106,6 +110,18 @@ defmodule Cldr.Strftime.Translator do
   end
 
   def translate("YY" <> rest) do
+    "%y" <> translate(rest)
+  end
+
+  def translate("yyyy" <> rest) do
+    "%y" <> translate(rest)
+  end
+
+  def translate("yy" <> rest) do
+    "%y" <> translate(rest)
+  end
+
+  def translate("y" <> rest) do
     "%y" <> translate(rest)
   end
 

@@ -22,7 +22,6 @@ defmodule Cldr.Strftime.Backend do
             calendar_data
             |> Map.fetch!(:date_formats)
             |> Cldr.Strftime.Translator.translate
-            |> IO.inspect(label: "Date formats for #{locale}")
 
           def date_formats(unquote(locale)) do
             {:ok, unquote(Macro.escape(date_formats))}
@@ -32,7 +31,6 @@ defmodule Cldr.Strftime.Backend do
             calendar_data
             |> Map.fetch!(:time_formats)
             |> Cldr.Strftime.Translator.translate
-            |> IO.inspect(label: "Time formats for #{locale}")
 
           def time_formats(unquote(locale)) do
             {:ok, unquote(Macro.escape(time_formats))}
@@ -42,7 +40,6 @@ defmodule Cldr.Strftime.Backend do
             calendar_data
             |> Map.fetch!(:date_time_formats)
             |> Cldr.Strftime.Translator.translate(date_formats, time_formats)
-            |> IO.inspect(label: "Date Time formats for #{locale}")
 
           def date_time_formats(unquote(locale)) do
             {:ok, unquote(Macro.escape(date_time_formats))}
