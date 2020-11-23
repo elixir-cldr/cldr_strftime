@@ -1,8 +1,8 @@
-# Cldr Strftime options generator
+# Calendar.strftime options generator for CLDR
 
 [Calendar.strftime/2](https://hexdocs.pm/elixir/Calendar.html#strftime/3) has been available since Elixir 1.11 to provide date/datetime formatting using the principles that date back to at least [1978](https://en.wikipedia.org/wiki/The_C_Programming_Language).
 
-The functions in this library are intended to service options to `Calendar.strftime/3` to support localisation of dates/datetimes leveraging the content in [CLDR](https://cldr.unicode.org).
+The functions in this library are intended to serve options to `Calendar.strftime/3` to support localisation of dates/datetimes leveraging the content in [CLDR](https://cldr.unicode.org).
 
 Strftime | CLDR     | Description                                                   | Examples (in ISO)
 -------- | ---------| ------------------------------------------------------------- | ------------------
@@ -26,7 +26,7 @@ Y        | YYYY     | Year                                                      
 z        | ZZZZ     | +hhmm/-hhmm time zone offset from UTC (empty string if naive) | +0300, -0530
 Z        | V, VV    | Time zone abbreviation (empty string if naive)                | CET, BRST
 
-[Calendar.strftime/2](https://hexdocs.pm/elixir/Calendar.html#strftime/3) allows for a set of options to guide formatting
+[Calendar.strftime/3](https://hexdocs.pm/elixir/Calendar.html#strftime/3) allows for a set of options to guide formatting
 #### Options
 
   • :preferred_datetime - a string for the preferred format to show
