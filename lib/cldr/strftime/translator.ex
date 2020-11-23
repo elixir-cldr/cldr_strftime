@@ -25,6 +25,10 @@ defmodule Cldr.Strftime.Translator do
     quoted_string(rest)
   end
 
+  def translate("%" <> rest) do
+    "%%" <> translate(rest)
+  end
+
   def translate("EEEE" <> rest) do
     "%A" <> translate(rest)
   end
