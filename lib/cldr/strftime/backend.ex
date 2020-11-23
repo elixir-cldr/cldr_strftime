@@ -41,7 +41,7 @@ defmodule Cldr.Strftime.Backend do
           date_time_formats =
             calendar_data
             |> Map.fetch!(:date_time_formats)
-            |> Cldr.Strftime.Translator.translate
+            |> Cldr.Strftime.Translator.translate(date_formats, time_formats)
             |> IO.inspect(label: "Date Time formats for #{locale}")
 
           def date_time_formats(unquote(locale)) do

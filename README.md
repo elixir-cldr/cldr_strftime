@@ -17,7 +17,6 @@ j        | DDD      | Day of the year                                           
 m        | MM       | Month                                                         | 01, 12
 M        | mm       | Minute                                                        | 00, 59
 p        | a,aa,aaa | "AM" or "PM" (noon is "PM", midnight as "AM")                 | AM, PM
-P        | a,aa,aaa | "am" or "pm" (noon is "pm", midnight as "am")                 | am, pm
 q        | Q        | Quarter                                                       | 1, 2, 3, 4
 S        | ss       | Second                                                        | 00, 59, 60
 u        | s        | Day of the week                                               | 1 (Monday), 7 (Sunday)
@@ -27,6 +26,7 @@ z        | ZZZZ     | +hhmm/-hhmm time zone offset from UTC (empty string if nai
 Z        | V, VV    | Time zone abbreviation (empty string if naive)                | CET, BRST
 
 [Calendar.strftime/3](https://hexdocs.pm/elixir/Calendar.html#strftime/3) allows for a set of options to guide formatting
+
 #### Options
 
   • :preferred_datetime - a string for the preferred format to show
