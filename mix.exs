@@ -7,10 +7,10 @@ defmodule Cldr.Strftime.MixProject do
     [
       app: :ex_cldr_strftime,
       version: @version,
-      name: "Cldr Strftime Options provider",
-      source_url: "https://github.com/elixir-cldr/cldr_dstrftime",
+      name: "Cldr Strftime Options generator for Calendar.strftime/3",
+      source_url: "https://github.com/elixir-cldr/cldr_strftime",
       docs: docs(),
-      elixir: "~> 1.8",
+      elixir: "~> 1.11",
       description: description(),
       package: package(),
       start_permanent: Mix.env() == :prod,
@@ -26,7 +26,7 @@ defmodule Cldr.Strftime.MixProject do
 
   defp description do
     """
-    Generates Calendar.strftime/3 options list
+    Generates a Calendar.strftime/3 options list
     from CLDR date time formats to support localised date, time
     and date time formatting.
     """
@@ -48,7 +48,6 @@ defmodule Cldr.Strftime.MixProject do
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       {:ex_cldr_numbers, "~> 2.16"},
@@ -69,7 +68,6 @@ defmodule Cldr.Strftime.MixProject do
       links: links(),
       files: [
         "lib",
-        "src/datetime_format_lexer.xrl",
         "config",
         "mix.exs",
         "README*",
