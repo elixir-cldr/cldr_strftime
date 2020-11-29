@@ -28,19 +28,28 @@ defmodule Cldr.Strftime do
 
   ## Example
 
-      => MyApp.Cldr.Calendar.strftime_options!
+      => Cldr.Strftime.strftime_options!
       [
-        am_pm_names: #Function<0.32021692/1 in MyApp.Cldr.Calendar.strftime_options/2>,
-        month_names: #Function<1.32021692/1 in MyApp.Cldr.Calendar.strftime_options/2>,
-        abbreviated_month_names: #Function<2.32021692/1 in MyApp.Cldr.Calendar.strftime_options/2>,
-        day_of_week_names: #Function<3.32021692/1 in MyApp.Cldr.Calendar.strftime_options/2>,
-        abbreviated_day_of_week_names: #Function<4.32021692/1 in MyApp.Cldr.Calendar.strftime_options/2>
+        am_pm_names: #Function<0.117825700/1 in MyApp.Cldr.Calendar.strftime_options!/2>,
+        month_names: #Function<1.117825700/1 in MyApp.Cldr.Calendar.strftime_options!/2>,
+        abbreviated_month_names: #Function<2.117825700/1 in MyApp.Cldr.Calendar.strftime_options!/2>,
+        day_of_week_names: #Function<3.117825700/1 in MyApp.Cldr.Calendar.strftime_options!/2>,
+        abbreviated_day_of_week_names: #Function<4.117825700/1 in MyApp.Cldr.Calendar.strftime_options!/2>,
+        preferred_date: "%b %d, %Y",
+        preferred_time: "%H:%M:%S %p",
+        preferred_datetime: "%b %d, %Y, %H:%M:%S %p"
       ]
 
   ## Typical usage from Elixir 1.11
 
-      Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%B", Cldr.Strftime.strftime_options!
-      => "August"
+      => Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%x", Cldr.Strftime.strftime_options!
+      "Aug 26, 2019"
+
+      => Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%X", Cldr.Strftime.strftime_options!
+      "13:52:06 PM"
+
+      => Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%c", Cldr.Strftime.strftime_options!
+      "Aug 26, 2019, 13:52:06 PM"
 
   """
   def strftime_options!(locale \\ Cldr.get_locale(), options \\ [])
@@ -54,54 +63,36 @@ defmodule Cldr.Strftime do
     {locale, backend} = Cldr.locale_and_backend_from(locale, Keyword.get(options, :backend))
 
     with {:ok, locale} <- Cldr.validate_locale(locale, backend) do
-      backend = Module.concat(locale.backend, Strftime)
+      calendar_backend = Module.concat(locale.backend, Calendar)
+      strftime_backend = Module.concat(locale.backend, Strftime)
       format = Keyword.get(options, :format, :medium)
 
-      [
-        am_pm_names: fn am_pm ->
-          locale
-          |> backend.day_periods()
-          |> get_in([:format, :abbreviated, am_pm])
-        end,
-        month_names: fn month ->
-          locale
-          |> backend.months()
-          |> get_in([:format, :wide, month])
-        end,
-        abbreviated_month_names: fn month ->
-          locale
-          |> backend.months()
-          |> get_in([:format, :abbreviated, month])
-        end,
-        day_of_week_names: fn day ->
-          locale
-          |> backend.days()
-          |> get_in([:format, :wide, day])
-        end,
-        abbreviated_day_of_week_names: fn day ->
-          locale
-          |> backend.days()
-          |> get_in([:format, :abbreviated, day])
-        end,
-        preferred_date:
-          locale
-          |> backend.date_formats()
-          |> unwrap_ok!
-          |> Map.fetch!(format),
-        preferred_time:
-          locale
-          |> backend.time_formats()
-          |> unwrap_ok!
-          |> Map.fetch!(format),
-        preferred_datetime:
-          locale
-          |> backend.date_time_formats()
-          |> unwrap_ok!
-          |> Map.fetch!(format)
-      ]
+      locale
+      |> calendar_backend.strftime_options!(options)
+      |> Keyword.merge(preferred_formats(locale, format, strftime_backend))
     else
       {:error, {exception, message}} -> raise exception, message
     end
+  end
+
+  def preferred_formats(locale, format, strftime_backend) do
+    [
+      preferred_date:
+        locale
+        |> strftime_backend.date_formats()
+        |> unwrap_ok!
+        |> Map.fetch!(format),
+      preferred_time:
+        locale
+        |> strftime_backend.time_formats()
+        |> unwrap_ok!
+        |> Map.fetch!(format),
+      preferred_datetime:
+        locale
+        |> strftime_backend.date_time_formats()
+        |> unwrap_ok!
+        |> Map.fetch!(format)
+    ]
   end
 
   defp unwrap_ok!({:ok, term}), do: term
