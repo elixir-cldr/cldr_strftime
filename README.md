@@ -1,6 +1,6 @@
 # Calendar.strftime options generator for CLDR
 
-[Calendar.strftime/2](https://hexdocs.pm/elixir/Calendar.html#strftime/3) has been available since Elixir 1.11 to provide date/datetime formatting using the principles that date back to at least [1978](https://en.wikipedia.org/wiki/The_C_Programming_Language).
+[Calendar.strftime/3](https://hexdocs.pm/elixir/Calendar.html#strftime/3) has been available since Elixir 1.11 to provide date/datetime formatting using the principles that date back to at least [1978](https://en.wikipedia.org/wiki/The_C_Programming_Language).
 
 The functions in this library are intended to serve options to `Calendar.strftime/3` to support localisation of dates/datetimes leveraging the content in [CLDR](https://cldr.unicode.org). Therefore a developer can take advantage of the built-in localised formats from `CLDR` with well-known `strftime` formatting strings.
 
@@ -104,29 +104,4 @@ iex> Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%c", Cldr.Strftime.strftime_
 "26 sierpnia 2019 13:52:06 +0000"
 ```
 
-### Installation
-
-The package can be installed by adding `cldr_strftime` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:ex_cldr_strftime, "~> 0.1.0"}
-  ]
-end
-```
-
-### Configuration
-
-Update your `ex_cldr` backend module to include the provider module `Cldr.Strftime`. For example:
-
-```elixir
-defmodule MyApp.Cldr do
-  use Cldr,
-    locales: ["en", "fr", "af", "ja", "de", "pl", "th"],
-    providers: [Cldr.Number, Cldr.Calendar, Cldr.DateTime, Cldr.Strftime]
-end
-```
-
-Documentation is available at [https://hexdocs.pm/cldr_strftime](https://hexdocs.pm/cldr_strftime).
 
