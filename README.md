@@ -4,36 +4,51 @@
 
 The functions in this library are intended to serve options to `Calendar.strftime/3` to support localisation of dates/datetimes leveraging the content in [CLDR](https://cldr.unicode.org). Therefore a developer can take advantage of the built-in localised formats from `CLDR` with well-known `strftime` formatting strings.
 
+### Installation
+
+The package can be installed by adding `cldr_strftime` to your list of dependencies in `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:ex_cldr_strftime, "~> 0.1.0"}
+  ]
+end
+```
+
+### Configuration
+
+Update your `ex_cldr` backend module to include the provider module `Cldr.Strftime`. For example:
+
+```elixir
+defmodule MyApp.Cldr do
+  use Cldr,
+    locales: ["en", "fr", "af", "ja", "de", "pl", "th"],
+    providers: [Cldr.Number, Cldr.Calendar, Cldr.DateTime, Cldr.Strftime]
+end
+```
+
+Documentation is available at [https://hexdocs.pm/cldr_strftime](https://hexdocs.pm/cldr_strftime).
+
 ### Keyword Options returned
 
 In accordance with the options defined for `Calendar.strftime/2`, `Cldr.Strftime.strftime_options!/2` returns the following keyword list:
 
-  • :preferred_datetime - a string for the preferred format to show
-    datetimes, it can't contain the %c format and defaults to "%Y-%m-%d
-    %H:%M:%S" if the option is not received
-  • :preferred_date - a string for the preferred format to show dates, it
-    can't contain the %x format and defaults to "%Y-%m-%d" if the option is not
-    received
-  • :preferred_time - a string for the preferred format to show times, it
-    can't contain the %X format and defaults to "%H:%M:%S" if the option is not
-    received
-  • :am_pm_names - a function that receives either :am or :pm and returns
-    the name of the period of the day, if the option is not received it
-    defaults to a function that returns "am" and "pm", respectively
-  •  :month_names - a function that receives a number and returns the name
-    of the corresponding month, if the option is not received it defaults to a
-    function that returns the month names in English
-  • :abbreviated_month_names - a function that receives a number and
-    returns the abbreviated name of the corresponding month, if the option is
-    not received it defaults to a function that returns the abbreviated month
-    names in English
-  • :day_of_week_names - a function that receives a number and returns the
-    name of the corresponding day of week, if the option is not received it
-    defaults to a function that returns the day of week names in English
-  • :abbreviated_day_of_week_names - a function that receives a number and
-    returns the abbreviated name of the corresponding day of week, if the
-    option is not received it defaults to a function that returns the
-    abbreviated day of week names in English
+* `:preferred_datetime` - a string for the preferred format to show datetimes,
+
+* `:preferred_date` - a string for the preferred format to show dates.
+
+* `:preferred_time` - a string for the preferred format to show times.
+
+* `:am_pm_names` - a function that receives either :am or :pm and returns the name of the period of the day
+
+* `:month_names` - a function that receives a number and returns the name of the corresponding month.
+
+* `:abbreviated_month_names` - a function that receives a number and returns the abbreviated name of the corresponding month.
+
+* `:day_of_week_names` - a function that receives a number and returns the name of the corresponding day of week.
+
+* `:abbreviated_day_of_week_names` - a function that receives a number and returns the abbreviated name of the corresponding day of week
 
 ### CLDR format translation
 
@@ -91,8 +106,7 @@ iex> Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%c", Cldr.Strftime.strftime_
 
 ### Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `cldr_strftime` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `cldr_strftime` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -102,7 +116,17 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/cldr_strftime](https://hexdocs.pm/cldr_strftime).
+### Configuration
+
+Update your `ex_cldr` backend module to include the provider module `Cldr.Strftime`. For example:
+
+```elixir
+defmodule MyApp.Cldr do
+  use Cldr,
+    locales: ["en", "fr", "af", "ja", "de", "pl", "th"],
+    providers: [Cldr.Number, Cldr.Calendar, Cldr.DateTime, Cldr.Strftime]
+end
+```
+
+Documentation is available at [https://hexdocs.pm/cldr_strftime](https://hexdocs.pm/cldr_strftime).
 
