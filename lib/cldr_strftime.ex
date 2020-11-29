@@ -18,13 +18,16 @@ defmodule Cldr.Strftime do
 
   ## Arguments
 
-  * `locale` is any locale returned by `MyApp.Cldr.known_locale_names/0`. The
-    default is `MyApp.Cldr.get_locale/0`
+  * `locale` is any locale returned by `Cldr.known_locale_names/1`. The
+    default is `Cldr.get_locale/0`
 
   * `options` is a set of keyword options. The default is `[]`
 
   ## Options
 
+  * `:format` determines the format of the date, time or
+    date time. The options are `:short`, `:medium`, `:long`
+    and `:full`. The default is `:medium`.
 
   ## Example
 
@@ -42,13 +45,13 @@ defmodule Cldr.Strftime do
 
   ## Typical usage from Elixir 1.11
 
-      => Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%x", Cldr.Strftime.strftime_options!
+      iex> Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%x", Cldr.Strftime.strftime_options!
       "Aug 26, 2019"
 
-      => Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%X", Cldr.Strftime.strftime_options!
+      iex> Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%X", Cldr.Strftime.strftime_options!
       "13:52:06 PM"
 
-      => Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%c", Cldr.Strftime.strftime_options!
+      iex> Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%c", Cldr.Strftime.strftime_options!
       "Aug 26, 2019, 13:52:06 PM"
 
   """

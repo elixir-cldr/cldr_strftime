@@ -1,8 +1,5 @@
-defmodule CldrStrftimeTest do
+defmodule Cldr.Strftime.Test do
   use ExUnit.Case
-  doctest CldrStrftime
+  doctest Cldr.Strftime
 
-  test "greets the world" do
-    assert CldrStrftime.hello() == :world
-  end
 end

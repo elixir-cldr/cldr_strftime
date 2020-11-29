@@ -1,4 +1,4 @@
-defmodule CldrStrftime.MixProject do
+defmodule Cldr.Strftime.MixProject do
   use Mix.Project
 
   @version "0.1.0"
@@ -27,7 +27,8 @@ defmodule CldrStrftime.MixProject do
   defp description do
     """
     Generates Calendar.strftime/3 options list
-    from CLDR date time formats.
+    from CLDR date time formats to support localised date, time
+    and date time formatting.
     """
   end
 
@@ -54,6 +55,7 @@ defmodule CldrStrftime.MixProject do
       {:ex_cldr_calendars, "~> 1.11"},
       {:ex_cldr_dates_times, "~> 2.6"},
       {:calendar_interval, "~> 0.2", optional: true},
+      {:ex_doc, "~> 0.18", runtime: false},
       {:jason, "~> 1.0", optional: true},
       {:benchee, "~> 1.0", optional: true, only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}

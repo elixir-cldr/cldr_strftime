@@ -8,11 +8,6 @@ defmodule Cldr.Strftime.Backend do
     quote location: :keep, bind_quoted: [config: config, backend: backend] do
       defmodule Strftime do
         @moduledoc false
-        if Cldr.Config.include_module_docs?(config.generate_docs) do
-          @moduledoc """
-
-          """
-        end
 
         alias Cldr.Calendar
         alias Cldr.LanguageTag
