@@ -11,7 +11,7 @@ The package can be installed by adding `cldr_strftime` to your list of dependenc
 ```elixir
 def deps do
   [
-    {:ex_cldr_strftime, "~> 0.1.0"}
+    {:ex_cldr_strftime, "~> 0.2.0"}
   ]
 end
 ```
@@ -32,7 +32,7 @@ Documentation is available at [https://hexdocs.pm/cldr_strftime](https://hexdocs
 
 ### Keyword Options returned
 
-In accordance with the options defined for `Calendar.strftime/2`, `Cldr.Strftime.strftime_options!/2` returns the following keyword list:
+In accordance with the options defined for `Calendar.strftime/3`, `Cldr.Strftime.strftime_options!/2` returns the following keyword list:
 
 * `:preferred_datetime` - a string for the preferred format to show datetimes,
 
