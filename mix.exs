@@ -1,7 +1,7 @@
 defmodule Cldr.Strftime.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "1.0.0"
 
   def project do
     [
@@ -10,7 +10,7 @@ defmodule Cldr.Strftime.MixProject do
       name: "Cldr Strftime Options generator for Calendar.strftime/3",
       source_url: "https://github.com/elixir-cldr/cldr_strftime",
       docs: docs(),
-      elixir: "~> 1.11",
+      elixir: "~> 1.10",
       description: description(),
       package: package(),
       start_permanent: Mix.env() == :prod,
@@ -50,11 +50,11 @@ defmodule Cldr.Strftime.MixProject do
 
   defp deps do
     [
-      {:ex_cldr_numbers, "~> 2.16"},
-      {:ex_cldr_calendars, "~> 1.11"},
-      {:ex_cldr_dates_times, "~> 2.6"},
+      {:ex_cldr_numbers, "~> 2.23"},
+      {:ex_cldr_calendars, "~> 1.17"},
+      {:ex_cldr_dates_times, "~> 2.10"},
       {:calendar_interval, "~> 0.2", optional: true},
-      {:ex_doc, "~> 0.18", runtime: false},
+      {:ex_doc, "~> 0.18", optional: true, runtime: false},
       {:jason, "~> 1.0", optional: true},
       {:benchee, "~> 1.0", optional: true, only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
