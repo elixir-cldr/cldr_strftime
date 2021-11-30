@@ -30,14 +30,14 @@ defmodule Cldr.Strftime.Backend do
           date_time_formats(cldr_locale_name)
         end
 
-        for locale <- Cldr.Config.known_locale_names(config) do
-          locale_data = Cldr.Config.get_locale(locale, config)
+        for locale <- Cldr.Locale.Loader.known_locale_names(config) do
+          locale_data = Cldr.Locale.Loader.get_locale(locale, config)
           calendar_data = get_in(locale_data, [:dates, :calendars, :gregorian])
 
           date_formats =
             calendar_data
             |> Map.fetch!(:date_formats)
-            |> Cldr.Strftime.Translator.translate
+            |> Cldr.Strftime.Translator.translate()
 
           def date_formats(unquote(locale)) do
             {:ok, unquote(Macro.escape(date_formats))}
@@ -46,7 +46,7 @@ defmodule Cldr.Strftime.Backend do
           time_formats =
             calendar_data
             |> Map.fetch!(:time_formats)
-            |> Cldr.Strftime.Translator.translate
+            |> Cldr.Strftime.Translator.translate()
 
           def time_formats(unquote(locale)) do
             {:ok, unquote(Macro.escape(time_formats))}
@@ -60,14 +60,12 @@ defmodule Cldr.Strftime.Backend do
           def date_time_formats(unquote(locale)) do
             {:ok, unquote(Macro.escape(date_time_formats))}
           end
-
         end
       end
 
       def date_formats(locale), do: {:error, Cldr.Locale.locale_error(locale)}
       def time_formats(locale), do: {:error, Cldr.Locale.locale_error(locale)}
       def date_time_formats(locale), do: {:error, Cldr.Locale.locale_error(locale)}
-
     end
   end
 end
