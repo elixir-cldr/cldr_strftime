@@ -50,7 +50,7 @@ defmodule Cldr.Strftime.MixProject do
 
   defp deps do
     [
-      {:ex_cldr_numbers, "~> 2.23"},
+      {:ex_cldr_numbers, "~> 2.28"},
       {:ex_cldr_calendars, "~> 1.17"},
       {:ex_cldr_dates_times, "~> 2.10"},
       {:calendar_interval, "~> 0.2", optional: true},

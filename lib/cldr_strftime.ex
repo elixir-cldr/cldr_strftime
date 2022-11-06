@@ -49,10 +49,10 @@ defmodule Cldr.Strftime do
       "Aug 26, 2019"
 
       iex> Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%X", Cldr.Strftime.strftime_options!
-      "13:52:06 PM"
+      "13:52:06 PM"
 
       iex> Calendar.strftime ~U[2019-08-26 13:52:06.0Z], "%c", Cldr.Strftime.strftime_options!
-      "Aug 26, 2019, 13:52:06 PM"
+      "Aug 26, 2019, 13:52:06 PM"
 
   """
   def strftime_options!(locale \\ Cldr.get_locale(), options \\ [])
