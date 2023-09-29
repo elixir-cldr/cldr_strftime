@@ -99,5 +99,5 @@ defmodule Cldr.Strftime do
   end
 
   defp unwrap_ok!({:ok, term}), do: term
-  defp unwrap_ok!({:error, {exception, message}}), do: raise exception, message
+  defp unwrap_ok!({:error, {exception, message}}), do: raise(exception, message)
 end
