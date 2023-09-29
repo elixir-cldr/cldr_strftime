@@ -1,5 +1,13 @@
 # Changelog
 
+## Cldr_Strftime v1.0.1
+
+This is the changelog for Cldr_Strftime v1.0.1 released on September 30th, 2023.  For older changelogs please consult the release tag on [GitHub](https://github.com/elixir-cldr/cldr_strftime/tags)
+
+### Bug Fixes
+
+* Fixes code ambiguity by wrapping parens. Thanks to @rubas for the report. Closes #2.
+
 ## Cldr_Strftime v1.0.0
 
 This is the changelog for Cldr_Strftime v1.0.0 released on December 1st, 2021.  For older changelogs please consult the release tag on [GitHub](https://github.com/elixir-cldr/cldr_strftime/tags)
